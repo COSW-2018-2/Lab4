@@ -16,6 +16,12 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.Cliente;
+import edu.eci.cosw.jpa.sample.model.ClienteId;
+import edu.eci.cosw.jpa.sample.model.PolizaAprobada;
+import edu.eci.cosw.jpa.sample.model.PolizaAprobadaId;
+import edu.eci.cosw.jpa.sample.model.TipoPoliza;
+import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -28,11 +34,25 @@ import org.hibernate.service.ServiceRegistry;
  * @author hcadavid
  */
 public class SimpleMainApp {
-   
+
     public static void main(String a[]){
         SessionFactory sf=getSessionFactory();
         Session s=sf.openSession();
         Transaction tx=s.beginTransaction();
+        
+        Cliente c = new Cliente(new ClienteId(12345, "cc"), "Jhordy", "Calle 165", "3123467890");
+        TipoPoliza tp =  (TipoPoliza) s.load(TipoPoliza.class, 1);
+        PolizaAprobada pa = new PolizaAprobada(new PolizaAprobadaId(12345, "cc", 1), c, tp , new Date(), new Date());
+        
+        s.saveOrUpdate(c);
+        s.saveOrUpdate(pa);
+        
+        // RECTIFICAMOS QUE ALLA QUEDADO AGREGADO CORRECTAMENTE
+        
+        Cliente cs = (Cliente) s.load(Cliente.class, new ClienteId(12345, "cc"));
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!CLIENTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +"\n"+c);
+        PolizaAprobada pas = (PolizaAprobada)s.load(PolizaAprobada.class, new PolizaAprobadaId(12345, "cc", 1));
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!POLIZA APROVADA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +"\n"+pas);
         
         tx.commit();       
         s.close();

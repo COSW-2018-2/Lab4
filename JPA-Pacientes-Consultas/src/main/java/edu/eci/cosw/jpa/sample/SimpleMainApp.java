@@ -16,6 +16,12 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.Consulta;
+import edu.eci.cosw.jpa.sample.model.Paciente;
+import edu.eci.cosw.jpa.sample.model.PacienteId;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,6 +40,25 @@ public class SimpleMainApp {
         Session s=sf.openSession();
         Transaction tx=s.beginTransaction();
         
+        Set<Consulta> consultas =  new HashSet<>();
+        consultas.add(new Consulta(new Date(), "Revision general"));
+        consultas.add(new Consulta(new Date(), "Consulta con ortopedista"));
+        consultas.add(new Consulta(new Date(), "Cita Jhordy error "));
+        
+//        USADAS CUANDO DB ESTABA VACIA
+//        s.save(new Paciente (new PacienteId(1,"cc"), "Jhordy", new Date(),consultas));
+//        s.delete(new Paciente (new PacienteId(1,"cc"), "Jhordy", new Date(),consultas));
+        
+        Paciente pIn = new Paciente (new PacienteId(1,"cc"), "Jhordy", new Date(),consultas);
+        s.saveOrUpdate(pIn);
+        
+        Paciente p = (Paciente) s.load(Paciente.class, new PacienteId(1, "cc"));
+        //PACIENTE
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PACIENTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +"\n"+ p);
+        // LAS CONSULTAS DEL PACIENTE
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!CONSULTAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        p.getConsultas().forEach(System.out::println);
+        
         tx.commit();    
         s.close();
         sf.close();
@@ -51,5 +76,6 @@ public class SimpleMainApp {
         SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         return sessionFactory;
     }
+    
 
 }
