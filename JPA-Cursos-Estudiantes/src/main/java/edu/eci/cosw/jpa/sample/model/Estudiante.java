@@ -2,7 +2,7 @@ package edu.eci.cosw.jpa.sample.model;
 // Generated Mar 9, 2016 7:01:57 AM by Hibernate Tools 4.3.1
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -60,14 +60,13 @@ public class Estudiante  implements java.io.Serializable {
         this.nombre = nombre;
     }
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "ESTUDIANTES_CURSOS", 
         joinColumns = 
             @JoinColumn(name="ESTUDIANTES_codigo", referencedColumnName="codigo"),
         inverseJoinColumns = 
             @JoinColumn(name="CURSOS_id", referencedColumnName="id")
     )
-    //@JsonManagedReference
     public Set<Curso> getCursos() {
         return this.cursos;
     }
@@ -78,8 +77,10 @@ public class Estudiante  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Estudiante{" + "codigo=" + codigo + ", nombre=" + nombre + ", cursos=" + cursos + '}';
+        return "Estudiante{" + "codigo=" + codigo + ", nombre=" + nombre + '}';
     }
+
+    
 
 
 }

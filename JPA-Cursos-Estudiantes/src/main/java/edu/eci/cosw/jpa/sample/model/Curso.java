@@ -2,17 +2,13 @@ package edu.eci.cosw.jpa.sample.model;
 // Generated Mar 9, 2016 7:01:57 AM by Hibernate Tools 4.3.1
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -76,8 +72,7 @@ public class Curso  implements java.io.Serializable {
         this.nemonico = nemonico;
     }
     
-    @ManyToMany(mappedBy = "cursos")
-    //@JsonBackReference
+    @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public Set<Estudiante> getEstudiantes() {
         return this.estudiantes;
     }
@@ -88,7 +83,9 @@ public class Curso  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Curso{" + "id=" + id + ", nombre=" + nombre + ", nemonico=" + nemonico + ", estudiantes=" + estudiantes + '}';
+        return "Curso{" + "id=" + id + ", nombre=" + nombre + ", nemonico=" + nemonico + '}';
     }
+
+    
     
 }

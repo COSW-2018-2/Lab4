@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4b1db505-3248-4887-bf37-1048ee9822be" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Desarrollo.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/pom.xml" afterPath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/src/main/java/edu/eci/cosw/jpa/sample/SimpleMainApp.java" afterPath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/src/main/java/edu/eci/cosw/jpa/sample/SimpleMainApp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/src/main/java/edu/eci/cosw/jpa/sample/model/Curso.java" afterPath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/src/main/java/edu/eci/cosw/jpa/sample/model/Curso.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/src/main/java/edu/eci/cosw/jpa/sample/model/Estudiante.java" afterPath="$PROJECT_DIR$/JPA-Cursos-Estudiantes/src/main/java/edu/eci/cosw/jpa/sample/model/Estudiante.java" />

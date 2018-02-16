@@ -58,9 +58,20 @@ public class SimpleMainApp {
         s.saveOrUpdate(e1);s.saveOrUpdate(e2);
         s.saveOrUpdate(c1);s.saveOrUpdate(c2);
         
+        //RECTIFICAMOS QUE ALLA QUEDADO AGREGADO CORRECTAMENTE
+        
+        Estudiante e  = (Estudiante) s.load(Estudiante.class, 12345);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!CURSOS DEL ESTUDIANTE Jhordy!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        e.getCursos().forEach(System.out::println);
+        Curso c = (Curso) s.load(Curso.class, 5);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ESTUDIANTES DEL CURSO MBDA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        c.getEstudiantes().forEach(System.out::println);
+
         tx.commit(); 
         s.close();
         sf.close();
+        
+        
     }
 
     public static SessionFactory getSessionFactory() {

@@ -52,10 +52,10 @@ public class SimpleMainApp {
         Paciente pIn = new Paciente (new PacienteId(1,"cc"), "Jhordy", new Date(),consultas);
         s.saveOrUpdate(pIn);
         
+        // RECTIFICAMOS QUE ALLA QUEDADO AGREGADO CORRECTAMENTE
+
         Paciente p = (Paciente) s.load(Paciente.class, new PacienteId(1, "cc"));
-        //PACIENTE
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PACIENTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +"\n"+ p);
-        // LAS CONSULTAS DEL PACIENTE
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!CONSULTAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         p.getConsultas().forEach(System.out::println);
         
